@@ -1,0 +1,8 @@
+24-12-14.21:17:48.356 [main            ] INFO  GroupBuyDiscountDaoTest - Starting GroupBuyDiscountDaoTest using Java 1.8.0_281 on catlap with PID 26732 (started by Cat in D:\WorkSpace\ChatGpt\group-buy-market\group-buy-market-app)
+24-12-14.21:17:48.357 [main            ] INFO  GroupBuyDiscountDaoTest - The following 1 profile is active: "dev"
+24-12-14.21:17:52.117 [main            ] INFO  GroupBuyDiscountDaoTest - Started GroupBuyDiscountDaoTest in 4.499 seconds (JVM running for 7.091)
+24-12-14.21:17:52.634 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+24-12-14.21:17:54.308 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+24-12-14.21:17:54.632 [main            ] INFO  GroupBuyDiscountDaoTest - 测试结果:[{"createTime":1733538015000,"discountDesc":"测试优惠","discountId":9890001,"discountName":"测试优惠","discountType":0,"id":1,"marketExpr":"20","marketPlan":"ZJ","updateTime":1733538015000}]
+24-12-14.21:17:54.660 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+24-12-14.21:17:54.681 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
