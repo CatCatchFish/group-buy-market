@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 @Data
 @Builder
@@ -27,5 +28,9 @@ public class MarketProductEntity {
      * 来源
      */
     private String channel;
+
+    public boolean hasBlank() {
+        return StringUtils.isBlank(userId) || StringUtils.isBlank(goodsId) || StringUtils.isBlank(source) || StringUtils.isBlank(channel);
+    }
 
 }

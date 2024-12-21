@@ -1,0 +1,7 @@
+24-12-15.17:27:13.107 [main            ] INFO  ApiTest                - Starting ApiTest using Java 1.8.0_281 on catlap with PID 22256 (started by Cat in D:\WorkSpace\ChatGpt\group-buy-market\group-buy-market-app)
+24-12-15.17:27:13.108 [main            ] INFO  ApiTest                - The following 1 profile is active: "dev"
+24-12-15.17:27:17.492 [main            ] INFO  ApiTest                - Started ApiTest in 5.166 seconds (JVM running for 7.211)
+24-12-15.17:28:08.085 [main            ] INFO  ApiTest                - Starting ApiTest using Java 1.8.0_281 on catlap with PID 15932 (started by Cat in D:\WorkSpace\ChatGpt\group-buy-market\group-buy-market-app)
+24-12-15.17:28:08.101 [main            ] INFO  ApiTest                - The following 1 profile is active: "dev"
+24-12-15.17:28:12.556 [main            ] INFO  ApiTest                - Started ApiTest in 5.325 seconds (JVM running for 6.506)
+24-12-15.17:28:12.970 [main            ] INFO  ApiTest                - 测试完成
