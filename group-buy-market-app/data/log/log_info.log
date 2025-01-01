@@ -1,36 +1,28 @@
-24-12-23.19:29:24.251 [main            ] INFO  IIndexGroupBuyMarketServiceTest - Starting IIndexGroupBuyMarketServiceTest using Java 1.8.0_281 on catlap with PID 19532 (started by Cat in D:\WorkSpace\ChatGpt\group-buy-market\group-buy-market-app)
-24-12-23.19:29:24.257 [main            ] INFO  IIndexGroupBuyMarketServiceTest - The following 1 profile is active: "dev"
-24-12-23.19:29:26.246 [main            ] INFO  IIndexGroupBuyMarketServiceTest - Started IIndexGroupBuyMarketServiceTest in 2.301 seconds (JVM running for 3.17)
-24-12-23.19:29:26.552 [main            ] INFO  RootNode               - 拼团商品查询试算服务-RootNode userId:xiaofuge requestParameter:{"channel":"c01","goodsId":"9890001","source":"s01","userId":"xiaofuge"}
-24-12-23.19:29:26.577 [pool-2-thread-1 ] INFO  HikariDataSource       - HikariPool-1 - Starting...
-24-12-23.19:29:27.701 [pool-2-thread-1 ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
-24-12-23.19:29:27.745 [main            ] INFO  MarketNode             - 拼团商品查询试算服务-MarketNode userId:xiaofuge 异步线程加载数据「GroupBuyActivityDiscountVO、SkuVO」完成
-24-12-23.19:29:27.745 [main            ] INFO  MarketNode             - 拼团商品查询试算服务-MarketNode userId:xiaofuge requestParameter:{"channel":"c01","goodsId":"9890001","source":"s01","userId":"xiaofuge"}
-24-12-23.19:29:27.745 [main            ] INFO  ZJCalculateService     - 优惠策略折扣计算:0
-24-12-23.19:29:27.756 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
-24-12-23.19:29:27.759 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
-24-12-23.19:29:49.935 [main            ] INFO  IIndexGroupBuyMarketServiceTest - Starting IIndexGroupBuyMarketServiceTest using Java 1.8.0_281 on catlap with PID 19212 (started by Cat in D:\WorkSpace\ChatGpt\group-buy-market\group-buy-market-app)
-24-12-23.19:29:49.935 [main            ] INFO  IIndexGroupBuyMarketServiceTest - The following 1 profile is active: "dev"
-24-12-23.19:29:51.946 [main            ] INFO  IIndexGroupBuyMarketServiceTest - Started IIndexGroupBuyMarketServiceTest in 2.334 seconds (JVM running for 3.263)
-24-12-23.19:29:52.237 [main            ] INFO  RootNode               - 拼团商品查询试算服务-RootNode userId:xiaofuge requestParameter:{"channel":"c01","goodsId":"9890001","source":"s01","userId":"xiaofuge"}
-24-12-23.19:29:52.262 [pool-2-thread-1 ] INFO  HikariDataSource       - HikariPool-1 - Starting...
-24-12-23.19:29:53.176 [pool-2-thread-1 ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
-24-12-23.19:29:53.220 [main            ] INFO  MarketNode             - 拼团商品查询试算服务-MarketNode userId:xiaofuge 异步线程加载数据「GroupBuyActivityDiscountVO、SkuVO」完成
-24-12-23.19:29:53.220 [main            ] INFO  MarketNode             - 拼团商品查询试算服务-MarketNode userId:xiaofuge requestParameter:{"channel":"c01","goodsId":"9890001","source":"s01","userId":"xiaofuge"}
-24-12-23.19:29:53.220 [main            ] INFO  ZJCalculateService     - 优惠策略折扣计算:0
-24-12-23.19:30:05.888 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
-24-12-23.19:30:05.913 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
-24-12-23.19:31:31.557 [main            ] INFO  IIndexGroupBuyMarketServiceTest - Starting IIndexGroupBuyMarketServiceTest using Java 1.8.0_281 on catlap with PID 20688 (started by Cat in D:\WorkSpace\ChatGpt\group-buy-market\group-buy-market-app)
-24-12-23.19:31:31.558 [main            ] INFO  IIndexGroupBuyMarketServiceTest - The following 1 profile is active: "dev"
-24-12-23.19:31:33.471 [main            ] INFO  IIndexGroupBuyMarketServiceTest - Started IIndexGroupBuyMarketServiceTest in 2.267 seconds (JVM running for 2.989)
-24-12-23.19:31:33.777 [main            ] INFO  RootNode               - 拼团商品查询试算服务-RootNode userId:xiaofuge requestParameter:{"channel":"c01","goodsId":"9890001","source":"s01","userId":"xiaofuge"}
-24-12-23.19:31:33.802 [pool-2-thread-2 ] INFO  HikariDataSource       - HikariPool-1 - Starting...
-24-12-23.19:31:34.608 [pool-2-thread-2 ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
-24-12-23.19:31:34.650 [main            ] INFO  MarketNode             - 拼团商品查询试算服务-MarketNode userId:xiaofuge 异步线程加载数据「GroupBuyActivityDiscountVO、SkuVO」完成
-24-12-23.19:31:34.650 [main            ] INFO  MarketNode             - 拼团商品查询试算服务-MarketNode userId:xiaofuge requestParameter:{"channel":"c01","goodsId":"9890001","source":"s01","userId":"xiaofuge"}
-24-12-23.19:31:34.650 [main            ] INFO  ZJCalculateService     - 优惠策略折扣计算:0
-24-12-23.19:31:40.349 [main            ] INFO  EndNode                - 拼团商品查询试算服务-EndNode userId:xiaofuge requestParameter:{"channel":"c01","goodsId":"9890001","source":"s01","userId":"xiaofuge"}
-24-12-23.19:31:40.351 [main            ] INFO  IIndexGroupBuyMarketServiceTest - 请求参数:{"channel":"c01","goodsId":"9890001","source":"s01","userId":"xiaofuge"}
-24-12-23.19:31:40.365 [main            ] INFO  IIndexGroupBuyMarketServiceTest - 返回结果:{"deductionPrice":80.00,"endTime":1733537980000,"goodsId":"9890001","goodsName":"《手写MyBatis：渐进式源码实践》","isEnable":false,"isVisible":false,"originalPrice":100.00,"startTime":1733537980000,"targetCount":1}
-24-12-23.19:31:40.382 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
-24-12-23.19:31:40.389 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-01-01.10:54:03.385 [main            ] INFO  ITagServiceTest        - Starting ITagServiceTest using Java 1.8.0_281 on catlap with PID 10560 (started by Cat in D:\WorkSpace\ChatGpt\group-buy-market\group-buy-market-app)
+25-01-01.10:54:03.385 [main            ] INFO  ITagServiceTest        - The following 1 profile is active: "dev"
+25-01-01.10:54:04.241 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-01-01.10:54:04.245 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-01-01.10:54:04.273 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+25-01-01.10:54:05.871 [main            ] INFO  Version                - Redisson 3.23.4
+25-01-01.10:54:06.387 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 192.168.136.129/192.168.136.129:6379
+25-01-01.10:54:06.403 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 192.168.136.129/192.168.136.129:6379
+25-01-01.10:54:08.391 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-01-01.10:54:08.458 [main            ] INFO  ITagServiceTest        - Started ITagServiceTest in 5.435 seconds (JVM running for 6.581)
+25-01-01.10:54:08.735 [main            ] INFO  TagService             - 人群标签批次任务 tagId:GP_1 batchId:10001
+25-01-01.10:54:08.757 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-01-01.10:54:09.493 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-01-01.10:54:29.185 [HikariPool-1 housekeeper] WARN  HikariPool             - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=49s691ms388µs500ns).
+25-01-01.10:54:41.682 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-01-01.10:54:41.693 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-01-01.10:55:01.245 [main            ] INFO  ITagServiceTest        - Starting ITagServiceTest using Java 1.8.0_281 on catlap with PID 21508 (started by Cat in D:\WorkSpace\ChatGpt\group-buy-market\group-buy-market-app)
+25-01-01.10:55:01.246 [main            ] INFO  ITagServiceTest        - The following 1 profile is active: "dev"
+25-01-01.10:55:01.872 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-01-01.10:55:01.874 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-01-01.10:55:01.903 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+25-01-01.10:55:03.239 [main            ] INFO  Version                - Redisson 3.23.4
+25-01-01.10:55:03.719 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 192.168.136.129/192.168.136.129:6379
+25-01-01.10:55:03.730 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 192.168.136.129/192.168.136.129:6379
+25-01-01.10:55:04.983 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-01-01.10:55:05.032 [main            ] INFO  ITagServiceTest        - Started ITagServiceTest in 4.065 seconds (JVM running for 4.858)
+25-01-01.10:55:05.343 [main            ] INFO  ITagServiceTest        - cat 存在，预期结果为 true，测试结果:true
+25-01-01.10:55:05.344 [main            ] INFO  ITagServiceTest        - gudebai 不存在，预期结果为 false，测试结果:false
