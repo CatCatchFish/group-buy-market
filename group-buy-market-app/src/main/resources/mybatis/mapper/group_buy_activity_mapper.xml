@@ -52,5 +52,25 @@
         limit 1
     </select>
 
+    <select id="queryValidGroupBuyActivityId" parameterType="java.lang.Long"
+            resultMap="dataMap">
+        select activity_id,
+               activity_name,
+               source,
+               channel,
+               goods_id,
+               discount_id,
+               group_type,
+               take_limit_count,
+               target,
+               valid_time,
+               status,
+               start_time,
+               end_time,
+               tag_id,
+               tag_scope
+        from group_buy_activity
+        where activity_id = #{activityId}
+    </select>
 
 </mapper>
