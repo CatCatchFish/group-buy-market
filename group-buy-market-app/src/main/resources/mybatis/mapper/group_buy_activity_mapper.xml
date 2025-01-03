@@ -6,8 +6,6 @@
         <id column="id" property="id"/>
         <result column="activity_id" property="activityId"/>
         <result column="activity_name" property="activityName"/>
-        <result column="source" property="source"/>
-        <result column="channel" property="channel"/>
         <result column="goods_id" property="goodsId"/>
         <result column="discount_id" property="discountId"/>
         <result column="group_type" property="groupType"/>
@@ -23,41 +21,10 @@
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
-    <select id="queryGroupBuyActivityList" resultMap="dataMap">
-        select *
-        from group_buy_activity
-    </select>
-
-    <select id="queryValidGroupBuyActivity" parameterType="cn.cat.infrastructure.dao.po.GroupBuyActivity"
-            resultMap="dataMap">
-        select activity_id,
-               activity_name,
-               source,
-               channel,
-               goods_id,
-               discount_id,
-               group_type,
-               take_limit_count,
-               target,
-               valid_time,
-               status,
-               start_time,
-               end_time,
-               tag_id,
-               tag_scope
-        from group_buy_activity
-        where source = #{source}
-          and channel = #{channel}
-        order by id desc
-        limit 1
-    </select>
-
     <select id="queryValidGroupBuyActivityId" parameterType="java.lang.Long"
             resultMap="dataMap">
         select activity_id,
                activity_name,
-               source,
-               channel,
                goods_id,
                discount_id,
                group_type,

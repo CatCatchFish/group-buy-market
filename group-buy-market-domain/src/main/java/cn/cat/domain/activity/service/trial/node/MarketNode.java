@@ -29,7 +29,7 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
     @Resource
     private Map<String, IDiscountCalculateService> discountCalculateServiceMap;
     @Resource
-    private EndNode endNode;
+    private TagNode tagNode;
     @Resource
     private ErrorNode errorNode;
 
@@ -82,7 +82,7 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
         // 不存在配置的拼团活动，走异常节点
         if (null == dynamicContext.getGroupBuyActivityDiscountVO() || null == dynamicContext.getSkuVO())
             return errorNode;
-        return endNode;
+        return tagNode;
     }
 
 }
