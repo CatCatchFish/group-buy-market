@@ -13,6 +13,10 @@ import org.apache.commons.lang3.StringUtils;
 public class MarketProductEntity {
 
     /**
+     * 活动ID
+     */
+    private Long activityId;
+    /**
      * 用户ID
      */
     private String userId;

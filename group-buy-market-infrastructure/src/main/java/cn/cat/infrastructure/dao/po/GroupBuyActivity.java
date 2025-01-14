@@ -30,10 +30,6 @@ public class GroupBuyActivity {
      */
     private String activityName;
     /**
-     * 商品ID
-     */
-    private String goodsId;
-    /**
      * 折扣ID
      */
     private String discountId;
