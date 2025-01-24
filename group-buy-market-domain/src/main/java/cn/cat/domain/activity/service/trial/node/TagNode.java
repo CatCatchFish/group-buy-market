@@ -18,6 +18,8 @@ import javax.annotation.Resource;
 public class TagNode extends AbstractGroupBuyMarketSupport<MarketProductEntity, DefaultActivityStrategyFactory.DynamicContext, TrialBalanceEntity> {
 
     @Resource
+    private MarketNode marketNode;
+    @Resource
     private EndNode endNode;
 
     @Override
@@ -45,6 +47,8 @@ public class TagNode extends AbstractGroupBuyMarketSupport<MarketProductEntity, 
 
     @Override
     public StrategyHandler<MarketProductEntity, DefaultActivityStrategyFactory.DynamicContext, TrialBalanceEntity> get(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws Exception {
+        // 人群标签可见，但不一定可以参与
+        if (dynamicContext.isVisible()) return marketNode;
         return endNode;
     }
 
