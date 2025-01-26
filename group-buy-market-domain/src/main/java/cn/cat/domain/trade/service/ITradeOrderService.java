@@ -23,7 +23,7 @@ public interface ITradeOrderService {
      * @param payDiscount 拼团折扣实体
      * @return 拼团，预购订单营销实体对象
      */
-    MarketPayOrderEntity lockMarketPayOrder(UserEntity user, PayActivityEntity payActivity, PayDiscountEntity payDiscount);
+    MarketPayOrderEntity lockMarketPayOrder(UserEntity user, PayActivityEntity payActivity, PayDiscountEntity payDiscount) throws Exception;
 
     /**
      * @param teamId 拼团ID

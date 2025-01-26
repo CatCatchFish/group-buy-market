@@ -18,9 +18,7 @@ import cn.cat.types.enums.ResponseCode;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Objects;
@@ -36,8 +34,12 @@ public class MarketTradeController implements IMarketTradeService {
     @Resource
     private ITradeOrderService tradeOrderService;
 
+    /**
+     * 拼团营销锁单
+     */
+    @RequestMapping(value = "lock_market_pay_order", method = RequestMethod.POST)
     @Override
-    public Response<LockMarketPayOrderResponseDTO> lockMarketPayOrder(LockMarketPayOrderRequestDTO lockMarketPayOrderRequestDTO) {
+    public Response<LockMarketPayOrderResponseDTO> lockMarketPayOrder(@RequestBody LockMarketPayOrderRequestDTO lockMarketPayOrderRequestDTO) {
         try {
             // 参数
             String userId = lockMarketPayOrderRequestDTO.getUserId();
@@ -48,7 +50,7 @@ public class MarketTradeController implements IMarketTradeService {
             String outTradeNo = lockMarketPayOrderRequestDTO.getOutTradeNo();
             String teamId = lockMarketPayOrderRequestDTO.getTeamId();
 
-            if (StringUtils.isBlank(userId) || StringUtils.isBlank(source) || StringUtils.isBlank(channel) || StringUtils.isBlank(goodsId) || StringUtils.isBlank(goodsId) || null == activityId) {
+            if (StringUtils.isBlank(userId) || StringUtils.isBlank(source) || StringUtils.isBlank(channel) || StringUtils.isBlank(goodsId) || null == activityId) {
                 return Response.<LockMarketPayOrderResponseDTO>builder()
                         .code(ResponseCode.ILLEGAL_PARAMETER.getCode())
                         .info(ResponseCode.ILLEGAL_PARAMETER.getInfo())
@@ -94,6 +96,14 @@ public class MarketTradeController implements IMarketTradeService {
                     .activityId(activityId)
                     .build());
 
+            // 人群限定
+            if (!trialBalanceEntity.getIsEnable() || !trialBalanceEntity.getIsVisible()) {
+                return Response.<LockMarketPayOrderResponseDTO>builder()
+                        .code(ResponseCode.E0007.getCode())
+                        .info(ResponseCode.E0007.getInfo())
+                        .build();
+            }
+
             GroupBuyActivityDiscountVO groupBuyActivityDiscountVO = trialBalanceEntity.getGroupBuyActivityDiscountVO();
 
             // 锁单
@@ -114,6 +124,7 @@ public class MarketTradeController implements IMarketTradeService {
                             .goodsName(trialBalanceEntity.getGoodsName())
                             .originalPrice(trialBalanceEntity.getOriginalPrice())
                             .deductionPrice(trialBalanceEntity.getDeductionPrice())
+                            .payPrice(trialBalanceEntity.getPayPrice())
                             .outTradeNo(outTradeNo)
                             .build());
             log.info("交易锁单记录(新):{} marketPayOrderEntity:{}", userId, JSON.toJSONString(marketPayOrderEntity));

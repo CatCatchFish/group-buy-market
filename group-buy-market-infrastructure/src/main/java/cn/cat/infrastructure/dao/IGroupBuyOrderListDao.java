@@ -10,4 +10,6 @@ public interface IGroupBuyOrderListDao {
 
     void insert(GroupBuyOrderList groupBuyOrderList);
 
+    Integer queryOrderCountByActivityId(GroupBuyOrderList groupBuyOrderListReq);
+
 }

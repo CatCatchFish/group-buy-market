@@ -1,6 +1,7 @@
 package cn.cat.domain.trade.adapter.repository;
 
 import cn.cat.domain.trade.model.aggregate.GroupBuyOrderAggregate;
+import cn.cat.domain.trade.model.entity.GroupBuyActivityEntity;
 import cn.cat.domain.trade.model.entity.MarketPayOrderEntity;
 import cn.cat.domain.trade.model.valobj.GroupBuyProgressVO;
 
@@ -11,5 +12,9 @@ public interface ITradeRepository {
     MarketPayOrderEntity lockMarketPayOrder(GroupBuyOrderAggregate groupBuyOrderAggregate);
 
     GroupBuyProgressVO queryGroupBuyProgress(String teamId);
+
+    GroupBuyActivityEntity queryGroupBuyActivityEntityByActivityId(Long activityId);
+
+    Integer queryOrderCountByActivityId(Long activityId, String userId);
 
 }

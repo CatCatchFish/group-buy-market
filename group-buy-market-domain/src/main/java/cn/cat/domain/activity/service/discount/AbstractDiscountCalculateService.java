@@ -1,11 +1,18 @@
 package cn.cat.domain.activity.service.discount;
 
+import cn.cat.domain.activity.adapter.repository.IActivityRepository;
 import cn.cat.domain.activity.model.valobj.DiscountTypeEnum;
 import cn.cat.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+import lombok.extern.slf4j.Slf4j;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 
+@Slf4j
 public abstract class AbstractDiscountCalculateService implements IDiscountCalculateService {
+
+    @Resource
+    protected IActivityRepository repository;
 
     @Override
     public BigDecimal calculate(String userId, BigDecimal originalPrice, GroupBuyActivityDiscountVO.GroupBuyDiscount groupBuyDiscount) {
@@ -13,6 +20,7 @@ public abstract class AbstractDiscountCalculateService implements IDiscountCalcu
         if (DiscountTypeEnum.TAG.equals(groupBuyDiscount.getDiscountType())) {
             boolean isCrowdRange = filterTagId(userId, groupBuyDiscount.getTagId());
             if (!isCrowdRange) {
+                log.info("折扣优惠计算拦截，用户不再优惠人群标签范围内 userId:{}", userId);
                 return originalPrice;
             }
         }
@@ -22,8 +30,7 @@ public abstract class AbstractDiscountCalculateService implements IDiscountCalcu
 
     // 人群过滤 - 限定人群优惠
     private boolean filterTagId(String userId, String tagId) {
-        // todo cat 后续开发这部分
-        return true;
+        return repository.isTagCrowdRange(tagId, userId);
     }
 
     protected BigDecimal noLessThanZero(BigDecimal price) {
