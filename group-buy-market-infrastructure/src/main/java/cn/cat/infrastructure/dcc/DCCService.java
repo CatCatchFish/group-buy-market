@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class DCCService {
 
     /**
-     * 降级开关 0关闭、1开启
+     * 降级开关 0关闭降级、1开启降级
      */
     @DCCValue("downgradeSwitch:0")
     private String downgradeSwitch;

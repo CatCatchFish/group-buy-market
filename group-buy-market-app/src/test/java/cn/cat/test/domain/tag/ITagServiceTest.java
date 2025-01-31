@@ -1,4 +1,4 @@
-package cn.cat.test.domain;
+package cn.cat.test.domain.tag;
 
 import cn.cat.domain.tag.service.TagService;
 import cn.cat.infrastructure.redis.IRedisService;
@@ -23,7 +23,7 @@ public class ITagServiceTest {
 
     @Test
     public void test_tag_job() {
-        tagService.execTagBatchJob("GP_1", "10001");
+        tagService.execTagBatchJob("CROWD_01", "10001");
     }
 
     @Test

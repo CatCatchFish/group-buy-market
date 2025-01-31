@@ -6,21 +6,35 @@ import cn.cat.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
 import cn.cat.domain.activity.model.valobj.TagScopeEnumVO;
 import cn.cat.domain.activity.service.trial.AbstractGroupBuyMarketSupport;
 import cn.cat.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
+import cn.cat.domain.activity.service.trial.thread.QueryGroupBuyActivityDiscountVOThreadTask;
 import cn.cat.types.design.framework.tree.StrategyHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.*;
 
 @Slf4j
 @Service
 public class TagNode extends AbstractGroupBuyMarketSupport<MarketProductEntity, DefaultActivityStrategyFactory.DynamicContext, TrialBalanceEntity> {
 
     @Resource
+    private ThreadPoolExecutor threadPoolExecutor;
+    @Resource
     private MarketNode marketNode;
     @Resource
     private EndNode endNode;
+
+    @Override
+    protected void multiThread(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws ExecutionException, InterruptedException, TimeoutException {
+        // 异步查询活动配置
+        QueryGroupBuyActivityDiscountVOThreadTask queryGroupBuyActivityDiscountVOThreadTask = new QueryGroupBuyActivityDiscountVOThreadTask(requestParameter.getSource(), requestParameter.getChannel(), requestParameter.getGoodsId(), repository);
+        FutureTask<GroupBuyActivityDiscountVO> groupBuyActivityDiscountVOFutureTask = new FutureTask<>(queryGroupBuyActivityDiscountVOThreadTask);
+        threadPoolExecutor.execute(groupBuyActivityDiscountVOFutureTask);
+
+        dynamicContext.setGroupBuyActivityDiscountVO(groupBuyActivityDiscountVOFutureTask.get(timeout, TimeUnit.MINUTES));
+    }
 
     @Override
     protected TrialBalanceEntity doApply(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws Exception {

@@ -1,4 +1,4 @@
-package cn.cat.test.domain;
+package cn.cat.test.domain.activity;
 
 import cn.cat.domain.activity.model.entity.MarketProductEntity;
 import cn.cat.domain.activity.model.entity.TrialBalanceEntity;

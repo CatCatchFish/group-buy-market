@@ -29,6 +29,9 @@ public class TagService implements ITagService {
         List<String> userIds = new ArrayList<String>() {{
             add("cat");
             add("dog");
+            add("cat1");
+            add("cat2");
+            add("cat3");
         }};
 
         for (String userId : userIds) {

@@ -1,10 +1,10 @@
-package cn.cat.domain.trade.service.filter;
+package cn.cat.domain.trade.service.lock.filter;
 
 import cn.cat.domain.trade.adapter.repository.ITradeRepository;
 import cn.cat.domain.trade.model.entity.GroupBuyActivityEntity;
 import cn.cat.domain.trade.model.entity.TradeRuleCommandEntity;
 import cn.cat.domain.trade.model.entity.TradeRuleFilterBackEntity;
-import cn.cat.domain.trade.service.factory.TradeRuleFilterFactory;
+import cn.cat.domain.trade.service.lock.factory.TradeRuleFilterFactory;
 import cn.cat.types.design.framework.link.model2.handler.ILogicHandler;
 import cn.cat.types.enums.ResponseCode;
 import cn.cat.types.exception.AppException;
