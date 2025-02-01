@@ -34,6 +34,10 @@ public class PayActivityEntity {
      */
     private Date endTime;
     /**
+     * 拼团有效时间
+     */
+    private Integer validTime;
+    /**
      * 目标数量
      */
     private Integer targetCount;

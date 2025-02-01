@@ -6,21 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @description 拼团交易命令实体
+ * @description 拼团过滤反馈实体
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TradeRuleCommandEntity {
+public class TradeLockRuleFilterBackEntity {
 
-    /**
-     * 用户ID
-     */
-    private String userId;
-    /**
-     * 活动ID
-     */
-    private Long activityId;
+    // 用户参与活动的订单量
+    private Integer userTakeOrderCount;
 
 }
