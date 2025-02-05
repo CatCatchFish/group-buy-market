@@ -1,2 +1,9 @@
-25-02-01.13:17:23.503 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
-25-02-01.13:17:26.286 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:46:38.926 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:46:43.002 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:50:24.930 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:50:28.161 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.21:00:26.446 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - An exception was thrown while closing send thread for session 0x1000000a4c90003.
+org.apache.zookeeper.ClientCnxn$EndOfStreamException: Unable to read additional data from server sessionid 0x1000000a4c90003, likely server has closed socket
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doIO(ClientCnxnSocketNIO.java:75)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:348)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1262)

@@ -1,19 +1,55 @@
-25-02-01.15:01:00.350 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
-25-02-01.15:01:04.124 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-25-02-01.15:05:23.297 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
-25-02-01.15:05:27.020 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-25-02-01.15:05:58.572 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
-25-02-01.15:06:02.601 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-25-02-01.15:06:14.130 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - Client session timed out, have not heard from server in 14148ms for session id 0x10000007edd0005
-25-02-01.15:06:14.136 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - Session 0x10000007edd0005 for sever 192.168.136.129/192.168.136.129:2181, Closing socket connection. Attempting reconnect except it is a SessionExpiredException.
-org.apache.zookeeper.ClientCnxn$SessionTimeoutException: Client session timed out, have not heard from server in 14148ms for session id 0x10000007edd0005
+25-02-02.20:53:32.143 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:53:36.935 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:54:22.480 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:54:26.995 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:55:19.283 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:55:23.765 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:55:24.181 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - An exception was thrown while closing send thread for session 0x1000000a4c90006.
+org.apache.zookeeper.ClientCnxn$EndOfStreamException: Unable to read additional data from server sessionid 0x1000000a4c90006, likely server has closed socket
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doIO(ClientCnxnSocketNIO.java:75)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:348)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1262)
+25-02-02.20:56:09.651 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:56:13.954 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:56:14.726 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - An exception was thrown while closing send thread for session 0x1000000a4c90007.
+org.apache.zookeeper.ClientCnxn$EndOfStreamException: Unable to read additional data from server sessionid 0x1000000a4c90007, likely server has closed socket
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doIO(ClientCnxnSocketNIO.java:75)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:348)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1262)
+25-02-02.20:56:44.958 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:56:49.458 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:56:50.203 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - An exception was thrown while closing send thread for session 0x1000000a4c90008.
+org.apache.zookeeper.ClientCnxn$EndOfStreamException: Unable to read additional data from server sessionid 0x1000000a4c90008, likely server has closed socket
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doIO(ClientCnxnSocketNIO.java:75)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:348)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1262)
+25-02-02.20:57:18.406 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:57:22.716 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:58:12.529 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:58:16.794 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:58:17.548 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - An exception was thrown while closing send thread for session 0x1000000a4c9000a.
+org.apache.zookeeper.ClientCnxn$EndOfStreamException: Unable to read additional data from server sessionid 0x1000000a4c9000a, likely server has closed socket
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doIO(ClientCnxnSocketNIO.java:75)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:348)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1262)
+25-02-02.20:59:20.015 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:59:24.507 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.20:59:25.236 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - An exception was thrown while closing send thread for session 0x1000000a4c9000b.
+org.apache.zookeeper.ClientCnxn$EndOfStreamException: Unable to read additional data from server sessionid 0x1000000a4c9000b, likely server has closed socket
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doIO(ClientCnxnSocketNIO.java:75)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:348)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1262)
+25-02-02.20:59:46.875 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
+25-02-02.20:59:51.784 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.21:00:13.682 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - Client session timed out, have not heard from server in 25260ms for session id 0x1000000a4c9000c
+25-02-02.21:00:13.687 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - Session 0x1000000a4c9000c for sever 192.168.136.129/192.168.136.129:2181, Closing socket connection. Attempting reconnect except it is a SessionExpiredException.
+org.apache.zookeeper.ClientCnxn$SessionTimeoutException: Client session timed out, have not heard from server in 25260ms for session id 0x1000000a4c9000c
 	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1230)
-25-02-01.15:07:01.999 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
-25-02-01.15:07:06.241 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-25-02-01.15:07:22.852 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - Client session timed out, have not heard from server in 19468ms for session id 0x10000007edd0006
-25-02-01.15:07:22.852 [HikariPool-1 housekeeper] WARN  HikariPool             - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s903ms347µs900ns).
-25-02-01.15:07:22.858 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - Session 0x10000007edd0006 for sever 192.168.136.129/192.168.136.129:2181, Closing socket connection. Attempting reconnect except it is a SessionExpiredException.
-org.apache.zookeeper.ClientCnxn$SessionTimeoutException: Client session timed out, have not heard from server in 19468ms for session id 0x10000007edd0006
-	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1230)
-25-02-01.15:07:45.984 [main            ] WARN  CuratorZookeeperClient - session timeout [18000] is less than connection timeout [30000]
-25-02-01.15:07:49.630 [main            ] WARN  LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+25-02-02.21:00:15.467 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - Unable to reconnect to ZooKeeper service, session 0x1000000a4c9000c has expired
+25-02-02.21:00:15.468 [main-SendThread(192.168.136.129:2181)] WARN  ClientCnxn             - An exception was thrown while closing send thread for session 0x1000000a4c9000c.
+org.apache.zookeeper.ClientCnxn$SessionExpiredException: Unable to reconnect to ZooKeeper service, session 0x1000000a4c9000c has expired
+	at org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1406)
+	at org.apache.zookeeper.ClientCnxnSocket.readConnectResult(ClientCnxnSocket.java:154)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doIO(ClientCnxnSocketNIO.java:84)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:348)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1262)

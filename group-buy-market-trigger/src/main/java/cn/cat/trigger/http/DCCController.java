@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * @description 动态配置管理
+ */
 @Slf4j
 @RestController()
 @CrossOrigin("*")
@@ -26,6 +29,9 @@ public class DCCController implements IDCCService {
     private static final String BASE_CONFIG_PATH = "/group-buy-market-dcc";
     private static final String BASE_CONFIG_PATH_CONFIG = BASE_CONFIG_PATH + "/config";
 
+    /**
+     * 更新动态配置
+     */
     @RequestMapping(value = "update_config", method = RequestMethod.GET)
     @Override
     public Response<Boolean> updateConfig(String key, String value) {
