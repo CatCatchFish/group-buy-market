@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>小傅哥 - 拼团项目 - 商品详情页</title>
 	<link rel="stylesheet" href="css/index.css">
+
 </head>
 <body>
 <!-- 轮播图 -->
@@ -21,47 +22,12 @@
 <div class="product-info">
 	<h1 class="product-title">手写MyBatis：渐进式源码实践（全彩）</h1>
 	<span class="promotion-tag">大促优惠</span>
-	<span class="promotion-text">直降 ¥60，76人再抢，参与马上抢到</span>
+	<span class="promotion-text"></span> <!-- 动态填充促销文本 -->
 </div>
 
-<!-- 修改后的拼单列表结构 -->
+<!-- 拼单列表容器 -->
 <div class="group-list">
-	<div class="group-item">
-		<div>
-			<div class="user-info">小傅哥</div>
-			<div class="group-status">
-				<span>组队仅剩1人，拼单即将结束</span>
-				<span class="countdown">00:05:49</span>
-			</div>
-		</div>
-		<div class="right">
-			<button class="group-btn" data-price="40">参与拼团</button>
-		</div>
-	</div>
-	<div class="group-item">
-		<div>
-			<div class="user-info">李二狗</div>
-			<div class="group-status">
-				<span>组队仅剩2人，拼单即将结束</span>
-				<span class="countdown">00:05:49</span>
-			</div>
-		</div>
-		<div class="right">
-			<button class="group-btn" data-price="40">参与拼团</button>
-		</div>
-	</div>
-	<div class="group-item">
-		<div>
-			<div class="user-info">张冰嘎</div>
-			<div class="group-status">
-				<span>组队仅剩1人，拼单即将结束</span>
-				<span class="countdown">00:05:49</span>
-			</div>
-		</div>
-		<div class="right">
-			<button class="group-btn" data-price="40">参与拼团</button>
-		</div>
-	</div>
+	<!-- 动态生成拼团列表 -->
 </div>
 
 <!-- 空白区域 -->
@@ -69,24 +35,273 @@
 
 <!-- 底部操作栏 -->
 <div class="action-bar">
-	<button class="action-btn buy-alone" data-price="100">单独购买(￥100)</button>
-	<button class="action-btn group-buy" data-price="40">开团购买(￥40)</button>
+	<button class="action-btn buy-alone"></button>
+	<button class="action-btn group-buy"></button>
 </div>
 
 <!-- 支付弹窗 -->
 <div id="paymentModal" class="modal">
 	<div class="modal-content">
 		<h2>请扫码支付</h2>
-		<p id="paymentAmount"></p>
+		<br/>
+		<p id="paymentAmount" style="color:red;"></p>
 		<img src="./images/sku-13811216-04.png" alt="支付二维码" class="qr-code">
+		<p id="outTradeNo"></p>
 		<div class="button-group">
 			<button id="cancelPayment">取消支付</button>
 			<button id="completePayment">支付完成</button>
 		</div>
 	</div>
 </div>
-
 <script src="js/index.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 根据测试诉求，设置基础地址
+    var baseUrl = "http://127.0.0.1:8091";
+
+    // 获取信息
+    var userId = getCookie("username");
+    if (!userId) {
+      window.location.href = "login.html"; // 跳转到登录页
+      return;
+    }
+
+    // 定义交易单号，如果交易单号不为空，则当前用户已参与拼团交易
+    let outTradeNo = "";
+
+    // 请求接口数据
+    fetch(baseUrl + '/api/v1/gbm/index/query_group_buy_market_config', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: userId,
+        source: "s01",
+        channel: "c01",
+        goodsId: "9890001"
+      })
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.code !== '0000') return;
+
+        const {goods, teamList, teamStatistic} = res.data;
+        const groupList = document.querySelector('.group-list');
+        const promotionText = document.querySelector('.promotion-text');
+
+        // 更新促销信息
+        promotionText.textContent = `直降 ¥${goods.deductionPrice.toFixed(0)}，${teamStatistic.allTeamUserCount}人再抢，参与马上抢到`;
+
+        // 清空并生成拼团列表
+        groupList.innerHTML = '';
+
+        if (teamList.length === 0) {
+          groupList.innerHTML = `
+                <div class="group-item empty-tips">
+                    <div class="tips-content">
+                        小伙伴，赶紧去开团吧，做村里最靓的仔！🎉
+                    </div>
+                </div>
+            `;
+        } else {
+          teamList.forEach(team => {
+            const remaining = team.targetCount - team.lockCount;
+            // 判断当前用户ID是否为登录用户ID
+            if (userId === team.userId) {
+              outTradeNo = team.outTradeNo;
+            }
+
+            groupList.innerHTML += `
+                    <div class="group-item">
+                        <div>
+                            <div class="user-info" data-teamId="${team.teamId}">${team.userId}</div>
+                            <div class="group-status">
+                                <span>组队仅剩${remaining}人，拼单即将结束</span>
+                                <span class="countdown">${team.validTimeCountdown}</span>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <button class="group-btn" data-price="${goods.payPrice.toFixed(0)}">参与拼团</button>
+                        </div>
+                    </div>
+                `;
+          });
+        }
+
+        // 更新底部按钮
+        const buyAloneBtn = document.querySelector('.buy-alone');
+        const groupBuyBtn = document.querySelector('.group-buy');
+        buyAloneBtn.textContent = `单独购买(￥${goods.originalPrice.toFixed(0)})`;
+        buyAloneBtn.dataset.price = goods.originalPrice;
+        groupBuyBtn.textContent = `开团购买(￥${goods.payPrice.toFixed(0)})`;
+        groupBuyBtn.dataset.price = goods.payPrice;
+
+        // 绑定支付事件[拼团购买]
+        document.querySelectorAll('.group-btn, .group-buy').forEach(btn => {
+          btn.addEventListener('click', function () {
+
+            // 如果有值，则直接展示支付按钮
+            if (outTradeNo) {
+              // 显示支付弹窗
+              document.getElementById('paymentAmount').textContent =
+                `￥${this.dataset.price}`;
+              document.getElementById('outTradeNo').textContent =
+                outTradeNo;
+              document.getElementById('paymentModal').style.display = 'block';
+              return;
+            }
+
+            // 获取拼团ID
+            let teamId = null;
+            if (this.classList.contains('group-btn')) {
+              const groupItem = this.closest('.group-item');
+              const userInfo = groupItem.querySelector('.user-info');
+              teamId = userInfo.dataset.teamid;
+            }
+
+            outTradeNo = generateRandomNumber(12);
+
+            // 构造请求数据（假设activityId和goodsId从按钮dataset获取）
+            const postData = {
+              userId: userId,
+              teamId: teamId,
+              activityId: 100123,
+              goodsId: "9890001",
+              source: "s01",
+              channel: "c01",
+              outTradeNo: outTradeNo,
+              notifyUrl: baseUrl + "/api/v1/test/group_buy_notify"
+            };
+
+            // 调用支付接口
+            fetch(baseUrl + '/api/v1/gbm/trade/lock_market_pay_order', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(postData)
+            })
+              .then(response => response.json())
+              .then(res => {
+                if (res.code !== '0000') {
+                  // 失败，清空交易ID
+                  outTradeNo = null;
+                  alert(res.code + "：" + res.info);
+                  return;
+                }
+
+                // 显示支付弹窗
+                document.getElementById('paymentAmount').textContent =
+                  `￥${this.dataset.price}`;
+                document.getElementById('outTradeNo').textContent =
+                  outTradeNo;
+                document.getElementById('paymentModal').style.display = 'block';
+              })
+              .catch(error => {
+                console.error('支付请求失败:', error);
+              });
+          });
+        });
+
+        // 启动倒计时
+        document.querySelectorAll('.countdown').forEach(el => {
+          new Countdown(el, el.textContent);
+        });
+
+      });
+
+    // 支付模块
+    const modal = document.getElementById("paymentModal")
+    const paymentAmount = document.getElementById("paymentAmount")
+    const cancelPayment = document.getElementById("cancelPayment")
+    const completePayment = document.getElementById("completePayment")
+
+    // 获取所有的按钮
+    const buttons = document.querySelectorAll(".buy-alone")
+
+    // 为每个按钮添加点击事件
+    buttons.forEach((button) => {
+      button.addEventListener("click", function () {
+        var userId = getCookie("username");
+        if (!userId) {
+          window.location.href = "login.html"; // 跳转到登录页
+          return;
+        }
+
+        const price = this.getAttribute("data-price")
+        showPaymentModal(price)
+      })
+    })
+
+    // 显示支付弹窗
+    function showPaymentModal(price) {
+      paymentAmount.textContent = `支付金额：￥${price}`
+      modal.style.display = "block"
+    }
+
+    // 隐藏支付弹窗
+    function hidePaymentModal() {
+      modal.style.display = "none"
+    }
+
+    // 取消支付
+    cancelPayment.addEventListener("click", hidePaymentModal)
+
+    // 支付完成
+    completePayment.addEventListener("click", () => {
+      // 生成符合要求的交易时间格式
+      const formatTime = date => date.toISOString()
+        .replace(/T/, ' ')
+        .replace(/\..+/, '')
+        .substr(0, 19);
+
+      // 构造请求参数
+      const postData = {
+        source: "s01",       // 保持与锁定订单时一致
+        channel: "c01",      // 保持与锁定订单时一致
+        userId: userId,
+        outTradeNo: outTradeNo,
+        outTradeTime: new Date()
+      };
+
+      // 调用结算接口
+      fetch(baseUrl + '/api/v1/gbm/trade/settlement_market_pay_order', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(postData)
+      })
+        .then(response => response.json())
+        .then(res => {
+          outTradeNo = null;
+          if (res.code === '0000') {
+            alert('支付&结算成功！');
+            window.location.reload(); // 支付成功后刷新页面
+          } else {
+            alert(`支付&结算失败：${res.info || '未知错误'}`);
+          }
+        })
+        .catch(error => {
+          console.error('接口请求失败:', error);
+          alert('网络异常，请检查连接');
+        })
+        .finally(() => {
+          hidePaymentModal(); // 始终关闭弹窗
+        });
+
+    })
+
+    // 点击弹窗外部关闭弹窗
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        hidePaymentModal()
+      }
+    })
+
+  });
+</script>
+
 </body>
 </html>
-

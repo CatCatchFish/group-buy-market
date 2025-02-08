@@ -48,9 +48,9 @@ public class MarketTradeControllerTest {
     @Test
     public void test_lockMarketPayOrder_teamId_not_null() {
         LockMarketPayOrderRequestDTO lockMarketPayOrderRequestDTO = new LockMarketPayOrderRequestDTO();
-        lockMarketPayOrderRequestDTO.setUserId("cat3");
+        lockMarketPayOrderRequestDTO.setUserId("cat2");
         // 拼团订单表中的teamId
-        lockMarketPayOrderRequestDTO.setTeamId("84440873");
+        lockMarketPayOrderRequestDTO.setTeamId("79524386");
         lockMarketPayOrderRequestDTO.setActivityId(100123L);
         lockMarketPayOrderRequestDTO.setGoodsId("9890001");
         lockMarketPayOrderRequestDTO.setSource("s01");

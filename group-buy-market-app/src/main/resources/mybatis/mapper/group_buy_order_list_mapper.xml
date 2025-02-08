@@ -106,13 +106,13 @@
         order by id desc
         limit #{count}
     </select>
-    
-    <select id="queryInProgressUserGroupBuyOrderDetailListByActivityId" parameterType="java.lang.Long" resultMap="dataMap">
+
+    <select id="queryInProgressUserGroupBuyOrderDetailListByActivityId" parameterType="java.lang.Long"
+            resultMap="dataMap">
         select user_id, team_id, out_trade_no
         from group_buy_order_list
         where activity_id = #{activityId}
           and status in (0, 1)
-        group by team_id
     </select>
 
 </mapper>

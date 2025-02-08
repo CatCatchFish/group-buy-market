@@ -9,4 +9,5 @@ public class NotifyRequestDTO {
 
     private String teamId;
     private List<String> outTradeNoList;
+
 }
