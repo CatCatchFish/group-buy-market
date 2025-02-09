@@ -115,4 +115,11 @@
         </foreach>
     </select>
 
+    <select id="queryGroupBuyProgressByActivityId" parameterType="java.lang.Long" resultMap="dataMap">
+        select team_id
+        from group_buy_order
+        where activity_id = #{activityId}
+          and status in (0, 1)
+    </select>
+    
 </mapper>

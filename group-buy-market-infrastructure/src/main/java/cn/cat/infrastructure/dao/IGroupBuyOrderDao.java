@@ -29,4 +29,6 @@ public interface IGroupBuyOrderDao {
 
     Integer queryAllTeamUserCount(Set<String> teamIds);
 
+    List<GroupBuyOrder> queryGroupBuyProgressByActivityId(Long activityId);
+
 }

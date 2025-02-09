@@ -2,6 +2,7 @@ package cn.cat.test.domain.activity;
 
 import cn.cat.domain.activity.model.entity.MarketProductEntity;
 import cn.cat.domain.activity.model.entity.TrialBalanceEntity;
+import cn.cat.domain.activity.model.valobj.TeamStatisticVO;
 import cn.cat.domain.activity.service.IIndexGroupBuyMarketService;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -46,5 +47,11 @@ public class IIndexGroupBuyMarketServiceTest {
         log.info("返回结果:{}", JSON.toJSONString(trialBalanceEntity));
     }
 
+    @Test
+    public void queryTeamStatisticByActivityIdTest() {
+        TeamStatisticVO teamStatisticVO = indexGroupBuyMarketService.queryTeamStatisticByActivityId(100123L);
+
+        log.info("请求参数:{}", JSON.toJSONString(teamStatisticVO));
+    }
 
 }

@@ -184,13 +184,6 @@ public class MarketTradeController implements IMarketTradeService {
                     .outTradeTime(requestDTO.getOutTradeTime())
                     .build());
 
-            SettlementMarketPayOrderResponseDTO responseDTO = SettlementMarketPayOrderResponseDTO.builder()
-                    .userId(tradePaySettlementEntity.getUserId())
-                    .teamId(tradePaySettlementEntity.getTeamId())
-                    .activityId(tradePaySettlementEntity.getActivityId())
-                    .outTradeNo(tradePaySettlementEntity.getOutTradeNo())
-                    .build();
-
             // 返回结果
             Response<SettlementMarketPayOrderResponseDTO> response = Response.<SettlementMarketPayOrderResponseDTO>builder()
                     .code(ResponseCode.SUCCESS.getCode())

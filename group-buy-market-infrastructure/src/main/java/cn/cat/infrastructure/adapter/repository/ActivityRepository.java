@@ -152,15 +152,15 @@ public class ActivityRepository implements IActivityRepository {
     @Override
     public TeamStatisticVO queryTeamStatisticByActivityId(Long activityId) {
         // 1. 根据活动ID查询拼团队伍
-        List<GroupBuyOrderList> groupBuyOrderLists = groupBuyOrderListDao.queryInProgressUserGroupBuyOrderDetailListByActivityId(activityId);
+        List<GroupBuyOrder> groupBuyOrders = groupBuyOrderDao.queryGroupBuyProgressByActivityId(activityId);
 
-        if (null == groupBuyOrderLists || groupBuyOrderLists.isEmpty()) {
+        if (null == groupBuyOrders || groupBuyOrders.isEmpty()) {
             return new TeamStatisticVO(0, 0, 0);
         }
 
         // 2. 过滤队伍获取 teamId
-        Set<String> teamIds = groupBuyOrderLists.stream()
-                .map(GroupBuyOrderList::getTeamId)
+        Set<String> teamIds = groupBuyOrders.stream()
+                .map(GroupBuyOrder::getTeamId)
                 .filter(teamId -> null != teamId && !teamId.isEmpty())
                 .collect(Collectors.toSet());
 
