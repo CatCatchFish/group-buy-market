@@ -28,6 +28,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.*;
 
 @Repository
@@ -57,7 +58,9 @@ public class TradeRepository implements ITradeRepository {
         return MarketPayOrderEntity.builder()
                 .teamId(groupBuyOrderList.getTeamId())
                 .orderId(groupBuyOrderList.getOrderId())
+                .originalPrice(groupBuyOrderList.getOriginalPrice())
                 .deductionPrice(groupBuyOrderList.getDeductionPrice())
+                .payPrice(groupBuyOrderList.getPayPrice())
                 .tradeOrderStatusEnumVO(TradeOrderStatusEnumVO.valueOf(groupBuyOrderList.getStatus()))
                 .build();
     }
@@ -122,6 +125,7 @@ public class TradeRepository implements ITradeRepository {
                 .channel(payDiscountEntity.getChannel())
                 .originalPrice(payDiscountEntity.getOriginalPrice())
                 .deductionPrice(payDiscountEntity.getDeductionPrice())
+                .payPrice(payDiscountEntity.getPayPrice())
                 .status(TradeOrderStatusEnumVO.CREATE.getCode())
                 .outTradeNo(payDiscountEntity.getOutTradeNo())
                 .bizId(payActivityEntity.getActivityName() + Constants.UNDERLINE + userEntity.getUserId() + Constants.UNDERLINE + (userTakeOrderCount + 1))
@@ -135,7 +139,9 @@ public class TradeRepository implements ITradeRepository {
         }
         return MarketPayOrderEntity.builder()
                 .orderId(orderId)
+                .originalPrice(payDiscountEntity.getOriginalPrice())
                 .deductionPrice(payDiscountEntity.getDeductionPrice())
+                .payPrice(payDiscountEntity.getPayPrice())
                 .tradeOrderStatusEnumVO(TradeOrderStatusEnumVO.CREATE)
                 .build();
     }
