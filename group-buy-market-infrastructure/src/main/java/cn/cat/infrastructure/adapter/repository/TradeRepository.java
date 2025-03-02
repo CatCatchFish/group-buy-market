@@ -15,6 +15,7 @@ import cn.cat.infrastructure.dao.po.GroupBuyOrder;
 import cn.cat.infrastructure.dao.po.GroupBuyOrderList;
 import cn.cat.infrastructure.dao.po.NotifyTask;
 import cn.cat.infrastructure.dcc.DCCService;
+import cn.cat.infrastructure.redis.IRedisService;
 import cn.cat.types.common.Constants;
 import cn.cat.types.enums.ActivityStatusEnumVO;
 import cn.cat.types.enums.GroupBuyOrderEnumVO;
@@ -28,8 +29,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Repository
 public class TradeRepository implements ITradeRepository {
@@ -44,6 +45,8 @@ public class TradeRepository implements ITradeRepository {
     private INotifyTaskDao notifyTaskDao;
     @Resource
     private DCCService dccService;
+    @Resource
+    private IRedisService redisService;
 
     @Override
     public MarketPayOrderEntity queryMarketPayOrderEntityByOutTradeNo(String userId, String outTradeNo) {
@@ -103,7 +106,15 @@ public class TradeRepository implements ITradeRepository {
 
             // 写入记录
             groupBuyOrderDao.insert(groupBuyOrder);
+            // 缓存拼团目标数量
+            redisService.setAtomicLong(groupBuyOrder.getActivityId() + Constants.UNDERLINE + groupBuyOrder.getTeamId()
+                    , groupBuyOrder.getTargetCount() - 1);
         } else {
+            String key = payActivityEntity.getActivityId() + Constants.UNDERLINE + teamId;
+            if (redisService.decr(key) < 0) {
+                redisService.setValue(key, 0, 3);
+                throw new AppException(ResponseCode.E0006);
+            }
             // 更新记录 - 如果更新记录不等于1，则表示拼团已满，抛出异常
             int updateAddTargetCount = groupBuyOrderDao.updateAddLockCount(teamId);
             if (1 != updateAddTargetCount) {
@@ -183,7 +194,12 @@ public class TradeRepository implements ITradeRepository {
         GroupBuyOrderList groupBuyOrderListReq = new GroupBuyOrderList();
         groupBuyOrderListReq.setActivityId(activityId);
         groupBuyOrderListReq.setUserId(userId);
-        return groupBuyOrderListDao.queryOrderCountByActivityId(groupBuyOrderListReq);
+        Integer count = groupBuyOrderListDao.queryOrderCountByActivityId(groupBuyOrderListReq);
+        String key = activityId + Constants.UNDERLINE + userId + Constants.UNDERLINE + count;
+        if (redisService.setNx(key, 3, TimeUnit.SECONDS)) {
+            return groupBuyOrderListDao.queryOrderCountByActivityId(groupBuyOrderListReq);
+        }
+        throw new AppException(ResponseCode.E0107);
     }
 
     @Override

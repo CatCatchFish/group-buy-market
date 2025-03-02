@@ -85,11 +85,9 @@ public class TradeSettlementOrderService implements ITradeSettlementOrderService
 
     @Override
     public Map<String, Integer> execSettlementNotifyJob() throws Exception {
-        log.info("拼团交易-执行结算通知任务");
-
         // 查询未执行任务
         List<NotifyTaskEntity> notifyTaskEntityList = repository.queryUnExecutedNotifyTaskList();
-
+        log.info("拼团交易-执行结算通知任务");
         return execSettlementNotifyJob(notifyTaskEntityList);
     }
 
@@ -101,6 +99,7 @@ public class TradeSettlementOrderService implements ITradeSettlementOrderService
     }
 
     private Map<String, Integer> execSettlementNotifyJob(List<NotifyTaskEntity> notifyTaskEntityList) throws Exception {
+        if (null == notifyTaskEntityList || notifyTaskEntityList.isEmpty()) return null;
         int successCount = 0, errorCount = 0, retryCount = 0;
         for (NotifyTaskEntity notifyTask : notifyTaskEntityList) {
             // 回调处理 success 成功，error 失败
