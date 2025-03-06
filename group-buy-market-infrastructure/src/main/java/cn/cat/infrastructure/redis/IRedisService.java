@@ -1,11 +1,9 @@
 package cn.cat.infrastructure.redis;
 
+import cn.cat.types.common.Constants;
+import com.google.common.hash.Hashing;
 import org.redisson.api.*;
 
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeUnit;
 
 public interface IRedisService {
@@ -268,16 +266,10 @@ public interface IRedisService {
     RBitSet getBitSet(String key);
 
     default int getIndexFromUserId(String userId) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] bytes = md.digest(userId.getBytes(StandardCharsets.UTF_8));
-            // 将哈希数组转换为整数
-            BigInteger bigInteger = new BigInteger(1, bytes);
-            // 取模
-            return bigInteger.mod(BigInteger.valueOf(Integer.MAX_VALUE)).intValue();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("MD5 not supported", e);
-        }
+        // 使用MurmurHash3，输出32位哈希值
+        int hash = Hashing.murmur3_32().hashUnencodedChars(userId).asInt();
+        // 取绝对值并限制范围
+        return Math.abs(hash) % Constants.MAX_USER_NUM;
     }
 
 }

@@ -23,12 +23,12 @@ public class ITagServiceTest {
 
     @Test
     public void test_tag_job() {
-        tagService.execTagBatchJob("CROWD_01", "10001");
+        tagService.execTagBatchJob("GP_01", "10001");
     }
 
     @Test
     public void test_get_tag_bitmap() {
-        RBitSet bitSet = redisService.getBitSet("GP_1");
+        RBitSet bitSet = redisService.getBitSet("GP_01");
         // 是否存在
         log.info("cat 存在，预期结果为 true，测试结果:{}", bitSet.get(redisService.getIndexFromUserId("cat")));
         log.info("gudebai 不存在，预期结果为 false，测试结果:{}", bitSet.get(redisService.getIndexFromUserId("gudebai")));

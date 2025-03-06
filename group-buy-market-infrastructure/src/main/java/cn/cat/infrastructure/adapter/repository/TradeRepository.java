@@ -111,7 +111,8 @@ public class TradeRepository implements ITradeRepository {
                     , groupBuyOrder.getTargetCount() - 1);
         } else {
             String key = payActivityEntity.getActivityId() + Constants.UNDERLINE + teamId;
-            if (redisService.decr(key) < 0) {
+            long surplus = redisService.decr(key);
+            if (surplus < 0) {
                 redisService.setValue(key, 0, 3);
                 throw new AppException(ResponseCode.E0006);
             }

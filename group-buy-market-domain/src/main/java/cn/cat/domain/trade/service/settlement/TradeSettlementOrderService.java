@@ -87,6 +87,7 @@ public class TradeSettlementOrderService implements ITradeSettlementOrderService
     public Map<String, Integer> execSettlementNotifyJob() throws Exception {
         // 查询未执行任务
         List<NotifyTaskEntity> notifyTaskEntityList = repository.queryUnExecutedNotifyTaskList();
+        if (notifyTaskEntityList.isEmpty()) return null;
         log.info("拼团交易-执行结算通知任务");
         return execSettlementNotifyJob(notifyTaskEntityList);
     }
