@@ -19,9 +19,7 @@ public class GroupBuyNotifyJob {
     @Scheduled(cron = "0/15 * * * * ?")
     public void exec() {
         try {
-            Map<String, Integer> result = tradeSettlementOrderService.execSettlementNotifyJob();
-            if (null == result || result.isEmpty()) return;
-            log.info("定时任务，回调通知拼团完结任务 result:{}", JSON.toJSONString(result));
+            tradeSettlementOrderService.execSettlementNotifyJob();
         } catch (Exception e) {
             log.error("定时任务，回调通知拼团完结任务失败", e);
         }

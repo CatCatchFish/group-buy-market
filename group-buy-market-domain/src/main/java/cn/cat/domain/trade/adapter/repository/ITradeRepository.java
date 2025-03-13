@@ -32,10 +32,10 @@ public interface ITradeRepository {
 
     List<NotifyTaskEntity> queryUnExecutedNotifyTaskList(String teamId);
 
-    int updateNotifyTaskStatusSuccess(String teamId);
+    void updateNotifyTaskStatusSuccess(String teamId);
 
-    int updateNotifyTaskStatusError(String teamId);
+    void updateNotifyTaskStatusError(String teamId);
 
-    int updateNotifyTaskStatusRetry(String teamId);
+    void updateNotifyTaskStatusRetry(String teamId);
 
 }

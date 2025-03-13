@@ -20,7 +20,7 @@ public class ThreadPoolConfig {
     public ThreadPoolExecutor threadPoolExecutor(ThreadPoolConfigProperties properties) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         // 实例化策略
         RejectedExecutionHandler handler;
-        switch (properties.getPolicy()){
+        switch (properties.getPolicy()) {
             case "AbortPolicy":
                 handler = new ThreadPoolExecutor.AbortPolicy();
                 break;
@@ -45,6 +45,15 @@ public class ThreadPoolConfig {
                 new LinkedBlockingQueue<>(properties.getBlockQueueSize()),
                 Executors.defaultThreadFactory(),
                 handler);
+    }
+
+    @Bean(name = "delayer")
+    public ScheduledThreadPoolExecutor scheduledThreadPoolExecutor(ThreadPoolExecutor threadPoolExecutor) {
+        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(threadPoolExecutor.getCorePoolSize(),
+                threadPoolExecutor.getThreadFactory());
+        // 不做任何处理，直接抛出异常
+        scheduledThreadPoolExecutor.setRemoveOnCancelPolicy(true);
+        return scheduledThreadPoolExecutor;
     }
 
 }

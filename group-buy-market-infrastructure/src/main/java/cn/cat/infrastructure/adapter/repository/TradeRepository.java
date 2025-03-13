@@ -305,18 +305,18 @@ public class TradeRepository implements ITradeRepository {
     }
 
     @Override
-    public int updateNotifyTaskStatusSuccess(String teamId) {
-        return notifyTaskDao.updateNotifyTaskStatusSuccess(teamId);
+    public void updateNotifyTaskStatusSuccess(String teamId) {
+        notifyTaskDao.updateNotifyTaskStatusSuccess(teamId);
     }
 
     @Override
-    public int updateNotifyTaskStatusError(String teamId) {
-        return notifyTaskDao.updateNotifyTaskStatusError(teamId);
+    public void updateNotifyTaskStatusError(String teamId) {
+        notifyTaskDao.updateNotifyTaskStatusError(teamId);
     }
 
     @Override
-    public int updateNotifyTaskStatusRetry(String teamId) {
-        return notifyTaskDao.updateNotifyTaskStatusRetry(teamId);
+    public void updateNotifyTaskStatusRetry(String teamId) {
+        notifyTaskDao.updateNotifyTaskStatusRetry(teamId);
     }
 
 }
