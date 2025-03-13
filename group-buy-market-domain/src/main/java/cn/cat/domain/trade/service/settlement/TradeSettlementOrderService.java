@@ -116,6 +116,8 @@ public class TradeSettlementOrderService implements ITradeSettlementOrderService
                 }
             });
             future.thenAccept(result -> {
+                log.info("拼团交易-执行结算通知回调结果，teamId:{}, notifyUrl:{}, parameterJson:{}, result:{}",
+                        notifyTask.getTeamId(), notifyTask.getNotifyUrl(), notifyTask.getParameterJson(), result);
                 if (NotifyTaskHTTPEnumVO.SUCCESS.getCode().equals(result)) {
                     // 成功，更新通知任务状态
                     repository.updateNotifyTaskStatusSuccess(notifyTask.getTeamId());

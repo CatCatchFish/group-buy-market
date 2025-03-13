@@ -92,12 +92,9 @@ public class ApiTest {
             }
         });
 
-        completableFuture.whenComplete((result, ex) -> {
-            if (ex == null) {
-                System.out.println("任务执行完成，结果：" + result);
-            } else {
-                System.out.println("任务执行异常：" + ex.getMessage());
-            }
+        completableFuture.thenApply(result -> {
+            System.out.println("任务执行完成，结果：" + result);
+            return result;
         });
 
         countDownLatch.await();
