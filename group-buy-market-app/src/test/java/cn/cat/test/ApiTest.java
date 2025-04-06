@@ -60,13 +60,11 @@ public class ApiTest {
                     System.out.println("任务执行完成");
                 });
 
-        result.whenComplete((res, ex) -> {
-            if (ex == null) {
-                System.out.println("任务执行完成，结果：" + res);
-            } else {
-                System.out.println("任务执行异常：" + ex.getMessage());
-            }
-        });
+        try {
+            result.get();
+        } catch (ExecutionException e) {
+            log.error("任务执行异常", e);
+        }
         countDownLatch.await();
     }
 

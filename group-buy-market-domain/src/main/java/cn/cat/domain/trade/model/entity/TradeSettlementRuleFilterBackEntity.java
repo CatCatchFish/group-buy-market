@@ -1,5 +1,6 @@
 package cn.cat.domain.trade.model.entity;
 
+import cn.cat.domain.trade.model.valobj.NotifyConfigVO;
 import cn.cat.types.enums.GroupBuyOrderEnumVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,6 +50,6 @@ public class TradeSettlementRuleFilterBackEntity {
     /**
      * 拼团回调地址
      */
-    private String notifyUrl;
+    private NotifyConfigVO notifyConfig;
 
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -27,6 +28,8 @@ public class TradeSettlementOrderService implements ITradeSettlementOrderService
     private ITradePort port;
     @Resource
     private BusinessLinkedList<TradeSettlementRuleCommandEntity, TradeSettlementRuleFilterFactory.DynamicContext, TradeSettlementRuleFilterBackEntity> tradeSettlementRuleFilter;
+    @Resource
+    private ThreadPoolExecutor threadPoolExecutor;
     @Resource
     private FutureUtil futureUtil;
 
@@ -57,7 +60,7 @@ public class TradeSettlementOrderService implements ITradeSettlementOrderService
                 .status(tradeSettlementRuleFilterBackEntity.getStatus())
                 .validStartTime(tradeSettlementRuleFilterBackEntity.getValidStartTime())
                 .validEndTime(tradeSettlementRuleFilterBackEntity.getValidEndTime())
-                .notifyUrl(tradeSettlementRuleFilterBackEntity.getNotifyUrl())
+                .notifyConfig(tradeSettlementRuleFilterBackEntity.getNotifyConfig())
                 .build();
 
         // 3. 构建聚合对象
@@ -68,10 +71,23 @@ public class TradeSettlementOrderService implements ITradeSettlementOrderService
                 .build();
 
         // 4. 拼团交易结算
-        repository.settlementMarketPayOrder(groupBuyTeamSettlementAggregate);
+        NotifyTaskEntity notifyTaskEntity = repository.settlementMarketPayOrder(groupBuyTeamSettlementAggregate);
 
         // 5. 组队回调处理 - 处理失败也会有定时任务补偿，通过这样的方式，可以减轻任务调度，提高时效性
-        execSettlementNotifyJob(teamId);
+        if (null != notifyTaskEntity) {
+            CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+                try {
+                    execSettlementNotifyJob(teamId);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }, threadPoolExecutor);
+            future.exceptionally(e -> {
+                log.error("拼团交易-执行结算通知回调异常，teamId:{}, notifyUrl:{}, parameterJson:{}",
+                        teamId, notifyTaskEntity.getNotifyUrl(), notifyTaskEntity.getParameterJson(), e);
+                return null;     // 异常处理，不影响主流程
+            });
+        }
 
         // 6. 返回结算信息 - 公司中开发这样的流程时候，会根据外部需要进行值的设置
         return TradePaySettlementEntity.builder()

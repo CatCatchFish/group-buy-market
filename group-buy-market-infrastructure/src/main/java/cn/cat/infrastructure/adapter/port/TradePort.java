@@ -2,6 +2,8 @@ package cn.cat.infrastructure.adapter.port;
 
 import cn.cat.domain.trade.adapter.port.ITradePort;
 import cn.cat.domain.trade.model.entity.NotifyTaskEntity;
+import cn.cat.domain.trade.model.valobj.NotifyTypeEnumVO;
+import cn.cat.infrastructure.event.EventPublisher;
 import cn.cat.infrastructure.gateway.GroupBuyNotifyService;
 import cn.cat.infrastructure.redis.IRedisService;
 import cn.cat.types.enums.NotifyTaskHTTPEnumVO;
@@ -19,6 +21,8 @@ public class TradePort implements ITradePort {
     private GroupBuyNotifyService groupBuyNotifyService;
     @Resource
     private IRedisService redisService;
+    @Resource
+    private EventPublisher publisher;
 
     @Override
     public String groupBuyNotify(NotifyTaskEntity notifyTask) throws Exception {
@@ -27,11 +31,16 @@ public class TradePort implements ITradePort {
         try {
             if (lock.tryLock(3, 0, TimeUnit.SECONDS)) {
                 try {
-                    // 无效的 notifyUrl 则直接返回成功
-                    if (StringUtils.isBlank(notifyTask.getNotifyUrl()) || "暂无".equals(notifyTask.getNotifyUrl())) {
+                    if (NotifyTypeEnumVO.HTTP.getCode().equals(notifyTask.getNotifyType())) {
+                        // 无效的 notifyUrl 则直接返回成功
+                        if (StringUtils.isBlank(notifyTask.getNotifyUrl()) || "暂无".equals(notifyTask.getNotifyUrl())) {
+                            return NotifyTaskHTTPEnumVO.SUCCESS.getCode();
+                        }
+                        return groupBuyNotifyService.groupBuyNotify(notifyTask.getNotifyUrl(), notifyTask.getParameterJson());
+                    } else if (NotifyTypeEnumVO.MQ.getCode().equals(notifyTask.getNotifyType())) {
+                        publisher.publish(notifyTask.getNotifyMQ(), notifyTask.getParameterJson());
                         return NotifyTaskHTTPEnumVO.SUCCESS.getCode();
                     }
-                    return groupBuyNotifyService.groupBuyNotify(notifyTask.getNotifyUrl(), notifyTask.getParameterJson());
                 } finally {
                     if (lock.isLocked() && lock.isHeldByCurrentThread()) {
                         lock.unlock();
