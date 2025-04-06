@@ -19,25 +19,6 @@ import java.util.function.Function;
 public class ApiTest {
 
     @Resource
-    private EventPublisher publisher;
-    @Value("${spring.rabbitmq.config.producer.topic_team_success.routing_key}")
-    private String routingKey;
-
-    @Test
-    public void test_rabbitmq() throws InterruptedException {
-        CountDownLatch countDownLatch = new CountDownLatch(1);
-
-        publisher.publish(routingKey, "订单结算：ORD-20231234");
-        publisher.publish(routingKey, "订单结算：ORD-20231235");
-        publisher.publish(routingKey, "订单结算：ORD-20231236");
-        publisher.publish(routingKey, "订单结算：ORD-20231237");
-        publisher.publish(routingKey, "订单结算：ORD-20231238");
-
-        // 等待，消息消费。测试后，可主动关闭。
-        countDownLatch.await();
-    }
-
-    @Resource
     private ThreadPoolExecutor threadPoolExecutor;
     @Resource
     private ScheduledThreadPoolExecutor scheduledThreadPoolExecutor;
