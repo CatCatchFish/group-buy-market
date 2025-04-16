@@ -5,8 +5,20 @@ document.addEventListener("DOMContentLoaded", () => {
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault()
 
+    let baseUrl = "http://127.0.0.1:8091";
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
+
+    fetch(baseUrl + '/api/v1/gbm/tag/add_to_tag', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: username,
+        tagId: 'CROWD_01'
+      })
+    }).then(response => response.json())
 
     // 登录成功
     errorMessage.style.display = "none"

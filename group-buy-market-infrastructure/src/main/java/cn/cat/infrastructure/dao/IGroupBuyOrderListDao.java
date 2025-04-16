@@ -24,4 +24,6 @@ public interface IGroupBuyOrderListDao {
 
     List<GroupBuyOrderList> queryInProgressUserGroupBuyOrderDetailListByActivityId(Long activityId);
 
+    String isInTeam(GroupBuyOrderList groupBuyOrderListReq);
+
 }

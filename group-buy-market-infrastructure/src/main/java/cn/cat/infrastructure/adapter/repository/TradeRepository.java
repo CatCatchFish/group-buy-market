@@ -120,8 +120,10 @@ public class TradeRepository implements ITradeRepository {
         } else {
             String key = payActivityEntity.getActivityId() + Constants.UNDERLINE + teamId;
             long surplus = redisService.decr(key);
-            if (surplus < 0) {
-                redisService.setValue(key, 0, 3);
+            if (surplus == 0) {
+                redisService.setValue(key, 0, 5);
+            } else if (surplus < 0) {
+                redisService.setValue(key, 0, 5);
                 throw new AppException(ResponseCode.E0006);
             }
             // 更新记录 - 如果更新记录不等于1，则表示拼团已满，抛出异常
@@ -273,6 +275,7 @@ public class TradeRepository implements ITradeRepository {
             NotifyTask notifyTask = new NotifyTask();
             notifyTask.setActivityId(groupBuyTeamEntity.getActivityId());
             notifyTask.setTeamId(groupBuyTeamEntity.getTeamId());
+            notifyTask.setNotifyType(notifyConfig.getNotifyType().getCode());
             notifyTask.setNotifyMQ(NotifyTypeEnumVO.MQ.equals(notifyConfig.getNotifyType()) ? notifyConfig.getNotifyMQ() : null);
             notifyTask.setNotifyUrl(NotifyTypeEnumVO.HTTP.equals(notifyConfig.getNotifyType()) ? notifyConfig.getNotifyUrl() : null);
             notifyTask.setNotifyCount(0);
@@ -353,6 +356,14 @@ public class TradeRepository implements ITradeRepository {
     @Override
     public void updateNotifyTaskStatusRetry(String teamId) {
         notifyTaskDao.updateNotifyTaskStatusRetry(teamId);
+    }
+
+    @Override
+    public boolean isInTeam(String userId, String teamId) {
+        GroupBuyOrderList groupBuyOrderReq = new GroupBuyOrderList();
+        groupBuyOrderReq.setTeamId(teamId);
+        groupBuyOrderReq.setUserId(userId);
+        return groupBuyOrderListDao.isInTeam(groupBuyOrderReq) != null;
     }
 
 }

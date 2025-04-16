@@ -49,5 +49,9 @@ public class UserGroupBuyOrderDetailEntity {
      * 外部交易单号-确保外部调用唯一幂等
      */
     private String outTradeNo;
+    /**
+     * 是否参与拼团
+     */
+    private Boolean inTeam = false;
 
 }

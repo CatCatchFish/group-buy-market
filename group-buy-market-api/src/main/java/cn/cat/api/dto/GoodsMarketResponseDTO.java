@@ -69,6 +69,8 @@ public class GoodsMarketResponseDTO {
         private String validTimeCountdown;
         // 外部交易单号-确保外部调用唯一幂等
         private String outTradeNo;
+        // 是否在拼团中
+        private Boolean inTeam;
 
         public static String differenceDateTime2Str(Date validStartTime, Date validEndTime) {
             if (validStartTime == null || validEndTime == null) {

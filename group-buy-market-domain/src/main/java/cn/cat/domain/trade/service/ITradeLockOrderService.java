@@ -29,6 +29,6 @@ public interface ITradeLockOrderService {
      * @param teamId 拼团ID
      * @return 拼团进度对象
      */
-    GroupBuyProgressVO queryGroupBuyProgress(String teamId);
+    GroupBuyProgressVO queryGroupBuyProgress(String userId, String teamId);
 
 }

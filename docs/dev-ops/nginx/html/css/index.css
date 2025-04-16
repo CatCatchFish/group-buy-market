@@ -148,6 +148,17 @@ body {
   cursor: pointer;
 }
 
+.group-btn.disabled {
+  background: #ffb08f;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 15px;
+  font-size: 14px;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .countdown {
   font-size: 14px;
   color: #ff5000;

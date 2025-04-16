@@ -26,5 +26,9 @@ public class GroupBuyProgressVO {
      * 锁单数量
      */
     private Integer lockCount;
+    /**
+     * 是否为团内组队人员
+     */
+    private Boolean inTeam;
 
 }

@@ -40,6 +40,9 @@ public class IndexGroupBuyMarketServiceImpl implements IIndexGroupBuyMarketServi
             List<UserGroupBuyOrderDetailEntity> ownerList = repository.queryInProgressUserGroupBuyOrderDetailListByOwner(activityId, userId, ownerCount);
             if (null != ownerList && !ownerList.isEmpty()) {
                 unionAllList.addAll(ownerList);
+                for (UserGroupBuyOrderDetailEntity userGroupBuyOrderDetailEntity : unionAllList) {
+                    userGroupBuyOrderDetailEntity.setInTeam(true);
+                }
             }
         }
 

@@ -85,6 +85,7 @@ public class MarketIndexController implements IMarketIndexService {
                             .validEndTime(userGroupBuyOrderDetailEntity.getValidEndTime())
                             .validTimeCountdown(GoodsMarketResponseDTO.Team.differenceDateTime2Str(new Date(), userGroupBuyOrderDetailEntity.getValidEndTime()))
                             .outTradeNo(userGroupBuyOrderDetailEntity.getOutTradeNo())
+                            .inTeam(userGroupBuyOrderDetailEntity.getInTeam())
                             .build();
                     teams.add(team);
                 }

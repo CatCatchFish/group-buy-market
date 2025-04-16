@@ -17,6 +17,7 @@
         <result column="status" property="status"/>
         <result column="valid_start_time" property="validStartTime"/>
         <result column="valid_end_time" property="validEndTime"/>
+        <result column="notify_type" property="notifyType"/>
         <result column="notify_url" property="notifyUrl"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
@@ -58,7 +59,8 @@
                status,
                valid_start_time,
                valid_end_time,
-               notify_url
+               notify_url,
+               notify_type
         from group_buy_order
         where team_id = #{teamId}
     </select>
@@ -121,5 +123,5 @@
         where activity_id = #{activityId}
           and status in (0, 1)
     </select>
-    
+
 </mapper>

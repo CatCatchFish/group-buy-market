@@ -87,7 +87,14 @@ public class MarketTradeController implements IMarketTradeService {
 
             // 判断拼团锁单是否完成了目标
             if (null != teamId) {
-                GroupBuyProgressVO groupBuyProgressVO = tradeOrderService.queryGroupBuyProgress(teamId);
+                GroupBuyProgressVO groupBuyProgressVO = tradeOrderService.queryGroupBuyProgress(userId, teamId);
+                if (null != groupBuyProgressVO && groupBuyProgressVO.getInTeam()) {
+                    log.info("交易锁单拦截-用户已参加该拼团:{} {}", userId, teamId);
+                    return Response.<LockMarketPayOrderResponseDTO>builder()
+                            .code(ResponseCode.E0107.getCode())
+                            .info(ResponseCode.E0107.getInfo())
+                            .build();
+                }
                 if (null != groupBuyProgressVO && Objects.equals(groupBuyProgressVO.getTargetCount(), groupBuyProgressVO.getLockCount())) {
                     log.info("交易锁单拦截-拼单目标已达成:{} {}", userId, teamId);
                     return Response.<LockMarketPayOrderResponseDTO>builder()

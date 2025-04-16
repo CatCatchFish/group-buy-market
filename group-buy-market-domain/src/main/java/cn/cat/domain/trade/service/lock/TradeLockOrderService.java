@@ -52,8 +52,11 @@ public class TradeLockOrderService implements ITradeLockOrderService {
     }
 
     @Override
-    public GroupBuyProgressVO queryGroupBuyProgress(String teamId) {
-        return repository.queryGroupBuyProgress(teamId);
+    public GroupBuyProgressVO queryGroupBuyProgress(String userId, String teamId) {
+        Boolean inTeam = repository.isInTeam(userId, teamId);
+        GroupBuyProgressVO groupBuyProgressVO = repository.queryGroupBuyProgress(teamId);
+        groupBuyProgressVO.setInTeam(inTeam);
+        return groupBuyProgressVO;
     }
 
 }

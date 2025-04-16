@@ -42,4 +42,10 @@ public class TagService implements ITagService {
         tagRepository.updateCrowdTagsStatistics(tagId, userIds.size());
     }
 
+    @Override
+    public void addToTag(String tagId, String userId) {
+        tagRepository.addCrowdTagsUserId(tagId, userId);
+        tagRepository.updateCrowdTagsStatistics(tagId, 1);
+    }
+
 }

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>小傅哥 - 拼团项目 - 商品详情页</title>
+	<title>mob - 拼团项目 - 商品详情页</title>
 	<link rel="stylesheet" href="css/index.css">
 
 </head>
@@ -20,7 +20,7 @@
 
 <!-- 商品信息 -->
 <div class="product-info">
-	<h1 class="product-title">手写MyBatis：渐进式源码实践（全彩）</h1>
+	<h1 class="product-title">影山茂夫mob师匠毛绒小公仔</h1>
 	<span class="promotion-tag">大促优惠</span>
 	<span class="promotion-text"></span> <!-- 动态填充促销文本 -->
 </div>
@@ -112,7 +112,23 @@
               outTradeNo = team.outTradeNo;
             }
 
-            groupList.innerHTML += `
+            if (team.inTeam) {
+              groupList.innerHTML += `
+                    <div class="group-item">
+                        <div>
+                            <div class="user-info" data-teamId="${team.teamId}">${team.userId}</div>
+                            <div class="group-status">
+                                <span>组队仅剩${remaining}人，拼单即将结束</span>
+                                <span class="countdown">${team.validTimeCountdown}</span>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <button class="group-btn disabled" data-price="${goods.payPrice.toFixed(0)}">参与拼团</button>
+                        </div>
+                    </div>
+                `;
+						} else {
+              groupList.innerHTML += `
                     <div class="group-item">
                         <div>
                             <div class="user-info" data-teamId="${team.teamId}">${team.userId}</div>
@@ -126,6 +142,7 @@
                         </div>
                     </div>
                 `;
+            }
           });
         }
 

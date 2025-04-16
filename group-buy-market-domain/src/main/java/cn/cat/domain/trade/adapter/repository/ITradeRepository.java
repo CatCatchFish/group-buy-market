@@ -38,4 +38,6 @@ public interface ITradeRepository {
 
     void updateNotifyTaskStatusRetry(String teamId);
 
+    boolean isInTeam(String userId, String teamId);
+
 }

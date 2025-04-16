@@ -118,4 +118,11 @@
           and status in (0, 1)
     </select>
 
+    <select id="isInTeam" parameterType="cn.cat.infrastructure.dao.po.GroupBuyOrderList" resultType="java.lang.String">
+        select id
+        from group_buy_order_list
+        where team_id = #{teamId}
+          and user_id = #{userId}
+    </select>
+
 </mapper>

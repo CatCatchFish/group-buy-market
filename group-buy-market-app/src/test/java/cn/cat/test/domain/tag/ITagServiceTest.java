@@ -23,7 +23,7 @@ public class ITagServiceTest {
 
     @Test
     public void test_tag_job() {
-        tagService.execTagBatchJob("GP_01", "10001");
+        tagService.execTagBatchJob("CROWD_01", "10001");
     }
 
     @Test
