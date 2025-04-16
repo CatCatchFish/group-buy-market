@@ -11,9 +11,9 @@
 <!-- 轮播图 -->
 <div class="swiper-container">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide"><img src="./images/sku-13811216-01.png"></div>
-		<div class="swiper-slide"><img src="./images/sku-13811216-02.png"></div>
-		<div class="swiper-slide"><img src="./images/sku-13811216-03.png"></div>
+		<div class="swiper-slide"><img src="images/sku-13811216-01.png"></div>
+		<div class="swiper-slide"><img src="images/sku-13811216-02.png"></div>
+		<div class="swiper-slide"><img src="images/sku-13811216-03.png"></div>
 	</div>
 	<div class="swiper-pagination"></div>
 </div>
@@ -45,7 +45,7 @@
 		<h2>请扫码支付</h2>
 		<br/>
 		<p id="paymentAmount" style="color:red;"></p>
-		<img src="./images/sku-13811216-04.png" alt="支付二维码" class="qr-code">
+		<img src="images/sku-13811216-04.png" alt="支付二维码" class="qr-code">
 		<p id="outTradeNo"></p>
 		<div class="button-group">
 			<button id="cancelPayment">取消支付</button>
@@ -57,7 +57,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // 根据测试诉求，设置基础地址
-    var baseUrl = "http://127.0.0.1:8091";
+    var baseUrl = "http://172.28.66.120:8091";
 
     // 获取信息
     var userId = getCookie("username");
