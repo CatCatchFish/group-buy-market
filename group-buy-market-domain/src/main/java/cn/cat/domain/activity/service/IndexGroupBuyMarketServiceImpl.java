@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -49,7 +50,7 @@ public class IndexGroupBuyMarketServiceImpl implements IIndexGroupBuyMarketServi
         // 查询其他非个人拼团
         if (0 != randomCount) {
             List<UserGroupBuyOrderDetailEntity> randomList = repository.queryInProgressUserGroupBuyOrderDetailListByRandom(activityId, userId, randomCount);
-            if (null != randomList && !randomList.isEmpty()){
+            if (null != randomList && !randomList.isEmpty()) {
                 unionAllList.addAll(randomList);
             }
         }

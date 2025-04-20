@@ -3,13 +3,18 @@ version: '3.8'
 services:
   # 部署前端项目
   group-buy-market-front:
-    image: registry.cn-hangzhou.aliyuncs.com/xfg-studio/nginx:latest
+    image: registry.cn-hangzhou.;'fgxs,dzfsmknaliyuncs.com/xfg-studio/nginx:latest
     container_name: group-buy-market-front
     restart: always
     ports:
+      - '443:443'
       - '80:80'
     volumes:
+      - ./nginx/logs:/var/log/nginx
       - ./nginx/html:/usr/share/nginx/html
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl/
     privileged: true
   # 部署后端项目
   # 原镜像，需要自己构建；fuzhengwei/group-buy-market-app:1.3
@@ -26,11 +31,11 @@ services:
       - SERVER_PORT=8091
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=catmysql
-      - SPRING_DATASOURCE_URL=jdbc:mysql://172.28.66.120:3306/group_buy_market?serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+      - SPRING_DATASOURCE_URL=jdbc:mysql://172.28.66.120:13306/group_buy_market?serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
       - SPRING_HIKARI_POOL_NAME=Retail_HikariCP
       - REDIS_SDK_CONFIG_HOST=172.28.66.120
-      - REDIS_SDK_CONFIG_PORT=6379
+      - REDIS_SDK_CONFIG_PORT=16379
     volumes:
       - ./log:/data/log
     logging:

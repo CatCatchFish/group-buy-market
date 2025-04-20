@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault()
 
-    let baseUrl = "http://172.28.66.120:8091";
+    let baseUrl = "http://localhost:8091";
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
 

@@ -8,6 +8,9 @@
 
 </head>
 <body>
+<div class="exit-btn">
+	<img id="exit" src="images/exit.png" alt="关闭">
+</div>
 <!-- 轮播图 -->
 <div class="swiper-container">
 	<div class="swiper-wrapper">
@@ -56,8 +59,13 @@
 <script src="js/index.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    const exit = document.getElementById("exit")
+    exit.addEventListener("click", () => {
+      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+      window.location.href = "login.html";
+    })
     // 根据测试诉求，设置基础地址
-    var baseUrl = "http://172.28.66.120:8091";
+    var baseUrl = "http://localhost:8091";
 
     // 获取信息
     var userId = getCookie("username");
@@ -127,7 +135,7 @@
                         </div>
                     </div>
                 `;
-						} else {
+            } else {
               groupList.innerHTML += `
                     <div class="group-item">
                         <div>

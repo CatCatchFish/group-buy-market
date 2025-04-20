@@ -9,6 +9,22 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.exit-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+}
+
+.exit-btn:hover {
+  cursor: pointer;
+}
+
+#exit {
+  width: 30px;
+  height: 30px;
+}
+
 /* 轮播图样式 */
 .swiper-container {
   width: 100%;

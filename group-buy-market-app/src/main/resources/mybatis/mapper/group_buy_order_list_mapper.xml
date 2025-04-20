@@ -84,29 +84,33 @@
 
     <select id="queryInProgressUserGroupBuyOrderDetailListByUserId"
             parameterType="cn.cat.infrastructure.dao.po.GroupBuyOrderList" resultMap="dataMap">
-        select user_id, team_id, out_trade_no
-        from group_buy_order_list
-        where activity_id = #{activityId}
-          and user_id = #{userId}
-          and status in (0, 1)
-          and end_time > now()
-        order by id desc
+        select gbol.user_id, gbol.team_id, gbol.out_trade_no
+        from group_buy_order_list gbol
+                 inner join group_buy_order gbo on gbo.team_id = gbol.team_id
+        where gbol.activity_id = #{activityId}
+          and gbo.activity_id = #{activityId}
+          and gbo.valid_end_time > now()
+          and gbol.user_id = #{userId}
+          and gbol.status in (0, 1)
+          and gbol.end_time > now()
+        order by gbol.id desc
         limit #{count}
     </select>
 
     <select id="queryInProgressUserGroupBuyOrderDetailListByRandom"
             parameterType="cn.cat.infrastructure.dao.po.GroupBuyOrderList" resultMap="dataMap">
-        select user_id, team_id, out_trade_no
-        from group_buy_order_list
-        where activity_id = #{activityId}
-          and team_id in (select team_id
-                          from group_buy_order
-                          where group_buy_order.activity_id = #{activityId}
-                            and group_buy_order.status = 0)
-          and user_id != #{userId}
-          and status in (0, 1)
-          and end_time > now()
-        order by id desc
+        select gbol.user_id, gbol.team_id, gbol.out_trade_no
+        from group_buy_order_list gbol
+                 inner join group_buy_order gbo
+                            on gbo.team_id = gbol.team_id
+        where gbol.activity_id = #{activityId}
+          and gbo.activity_id = #{activityId}
+          and gbo.valid_end_time > now()
+          and gbo.status = 0
+          and gbol.user_id != #{userId}
+          and gbol.status in (0, 1)
+          and gbol.end_time > now()
+        order by gbol.id desc
         limit #{count}
     </select>
 
