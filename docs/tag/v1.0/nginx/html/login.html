@@ -9,16 +9,19 @@
 <body>
 <div class="container">
 	<form id="loginForm" class="login-form">
-		<h2>欢迎登录 - 拼团营销系统</h2>
-		<div class="input-group">
-			<input type="text" id="username" required>
-			<label for="username">用户名</label>
+		<h3>欢迎登录 - 拼团营销系统</h3>
+		<img alt="二维码" src="./images/mob_helper.jpg">
+		<div class="auth-tips">
+			关注公众号，
+			<a href="./images/mob_helper.jpg" target="_blank">
+				回复【403】获取验证码
+			</a>
 		</div>
 		<div class="input-group">
-			<input type="password" id="password" required>
-			<label for="password">密码</label>
+			<input type="text" id="code" required>
+			<label for="code">验证码</label>
 		</div>
-		<button type="submit">登录</button>
+		<button id="login-btn" type="submit">登录</button>
 		<p class="error-message" id="errorMessage"></p>
 	</form>
 </div>
